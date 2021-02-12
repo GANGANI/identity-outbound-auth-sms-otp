@@ -36,6 +36,9 @@ public class SMSOTPConstants {
     public static final String SAVED_OTP_LIST = "http://wso2.org/claims/otpbackupcodes";
     public static final String USER_SMSOTP_DISABLED_CLAIM_URI = "http://wso2.org/claims/identity/smsotp_disabled";
     public static final String BACKUP_CODES_SEPARATOR = ",";
+    public static final String SMS_OTP_FAILED_ATTEMPTS_CLAIM = "http://wso2.org/claims/identity/failedSmsOtpAttempts";
+    public static final String ACCOUNT_LOCKED_CLAIM = "http://wso2.org/claims/identity/accountLocked";
+    public static final String ACCOUNT_UNLOCK_TIME_CLAIM = "http://wso2.org/claims/identity/unlockTime";
 
     public static final String SMS_URL = "sms_url";
     public static final String HTTP_METHOD = "http_method";
@@ -53,6 +56,8 @@ public class SMSOTPConstants {
     public static final String IS_ENABLE_ALPHANUMERIC_TOKEN = "EnableAlphanumericToken";
     public static final String TOKEN_EXPIRY_TIME = "TokenExpiryTime";
     public static final String TOKEN_LENGTH = "TokenLength";
+    public static final String SHOW_AUTH_FAILURE_REASON = "ShowAuthFailureReason";
+    public static final String ENABLE_ACCOUNT_LOCKING_FOR_FAILED_ATTEMPTS = "EnableAccountLockingForFailedAttempts";
 
     public static final String GET_METHOD = "GET";
     public static final String POST_METHOD = "POST";
@@ -94,10 +99,12 @@ public class SMSOTPConstants {
     public static final String BACKWARD = "backward";
     public static final String SCREEN_VALUE = "&screenvalue=";
     public static final String CODE_MISMATCH = "codeMismatch";
-    public static final String ORDER_OF_DIGITS = "&order=";
+    public static final String ACCOUNT_LOCKED = "accountLocked";
+    public static final String ACCOUNT_LOCKED_ERROR = "account.locked";
     public static final String TOKEN_VALIDITY_TIME = "tokenValidityTime";
     public static final String SENT_OTP_TOKEN_TIME = "sentOTPTokenTime";
     public static final String TOKEN_EXPIRED = "tokenExpired";
     public static final String TOKEN_EXPIRED_VALUE = "token.expired";
-
+    public static final String LOCAL_AUTHENTICATOR = "LOCAL";
+    public static final String ADMIN_INITIATED = "AdminInitiated";
 }

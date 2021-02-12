@@ -44,7 +44,7 @@
     </profiles>
     <dependencies>
         <dependency>
-            <groupId>org.wso2.carbon.identity.framework</groupId>
+            <groupId>org.wso2.carbon.identity</groupId>
             <artifactId>org.wso2.carbon.idp.mgt</artifactId>
             <version>${carbon.identity.version}</version>
             <scope>provided</scope>
@@ -55,37 +55,37 @@
             <version>${commons-logging.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.wso2.carbon.identity.framework</groupId>
+            <groupId>org.wso2.carbon.identity</groupId>
             <artifactId>org.wso2.carbon.identity.application.common</artifactId>
             <version>${carbon.identity.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>org.wso2.carbon.identity.framework</groupId>
+            <groupId>org.wso2.carbon.identity</groupId>
             <artifactId>org.wso2.carbon.identity.user.profile</artifactId>
             <version>${carbon.identity.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>org.wso2.carbon.identity.framework</groupId>
+            <groupId>org.wso2.carbon.identity</groupId>
             <artifactId>org.wso2.carbon.identity.core</artifactId>
             <version>${carbon.identity.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>org.wso2.carbon.identity.framework</groupId>
+            <groupId>org.wso2.carbon.identity</groupId>
             <artifactId>org.wso2.carbon.identity.application.authentication.framework</artifactId>
             <version>${carbon.identity.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>org.wso2.carbon.identity.framework</groupId>
+            <groupId>org.wso2.carbon.identity</groupId>
             <artifactId>org.wso2.carbon.identity.notification.mgt</artifactId>
             <version>${carbon.identity.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>org.wso2.carbon.identity.framework</groupId>
+            <groupId>org.wso2.carbon.identity</groupId>
             <artifactId>org.wso2.carbon.identity.provisioning</artifactId>
             <version>${carbon.identity.version}</version>
             <scope>provided</scope>
@@ -103,7 +103,7 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>org.wso2.carbon.identity.framework</groupId>
+            <groupId>org.wso2.carbon.identity</groupId>
             <artifactId>org.wso2.carbon.identity.application.mgt</artifactId>
             <version>${carbon.identity.version}</version>
             <exclusions>
@@ -162,7 +162,7 @@
             <version>${axiom.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.wso2.carbon.identity.framework</groupId>
+            <groupId>org.wso2.carbon.identity</groupId>
             <artifactId>org.wso2.carbon.identity.application.authentication.endpoint.util</artifactId>
             <version>${carbon.identity.version}</version>
             <scope>provided</scope>
@@ -366,7 +366,7 @@
         </snapshotRepository>
     </distributionManagement>
     <properties>
-        <carbon.identity.version>5.7.0</carbon.identity.version>
+        <carbon.identity.version>5.2.2</carbon.identity.version>
         <commons-logging.version>4.4.11</commons-logging.version>
         <carbon.kernel.version>4.4.11</carbon.kernel.version>
         <oltu.version>1.0.0.wso2v2</oltu.version>
@@ -392,5 +392,6 @@
         <identity.extension.utils>1.0.8</identity.extension.utils>
         <identity.extension.utils.import.version.range>[1.0.8, 2.0.0)
         </identity.extension.utils.import.version.range>
+        <carbon.identity.package.import.version.range>[5.0.0, 6.0.0)</carbon.identity.package.import.version.range>
     </properties>
 </project>

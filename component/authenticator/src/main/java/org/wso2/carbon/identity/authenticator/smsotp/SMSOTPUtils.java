@@ -25,10 +25,14 @@ import org.wso2.carbon.context.CarbonContext;
 import org.wso2.carbon.extension.identity.helper.IdentityHelperConstants;
 import org.wso2.carbon.identity.application.authentication.framework.config.builder.FileBasedConfigurationBuilder;
 import org.wso2.carbon.identity.application.authentication.framework.config.model.AuthenticatorConfig;
+import org.wso2.carbon.identity.application.authentication.framework.config.model.StepConfig;
 import org.wso2.carbon.identity.application.authentication.framework.context.AuthenticationContext;
 import org.wso2.carbon.identity.application.authentication.framework.exception.AuthenticationFailedException;
+import org.wso2.carbon.identity.application.authentication.framework.model.AuthenticatedUser;
 import org.wso2.carbon.identity.authenticator.smsotp.exception.SMSOTPException;
+import org.wso2.carbon.identity.authenticator.smsotp.internal.SMSOTPServiceDataHolder;
 import org.wso2.carbon.identity.core.util.IdentityTenantUtil;
+import org.wso2.carbon.identity.mgt.AccountLockServiceException;
 import org.wso2.carbon.user.api.UserRealm;
 import org.wso2.carbon.user.api.UserStoreException;
 import org.wso2.carbon.user.api.UserStoreManager;
@@ -401,5 +405,68 @@ public class SMSOTPUtils {
                     configValue);
         }
         return configValue;
+    }
+
+    /**
+     * Check whether ShowAuthFailureReason is enabled or not.
+     *
+     * @param context Authentication context.
+     * @return True if showing authentication failure reason is enabled.
+     */
+    public static boolean isShowAuthFailureReason(AuthenticationContext context) {
+
+        return Boolean.parseBoolean(getConfiguration(context, SMSOTPConstants.SHOW_AUTH_FAILURE_REASON));
+    }
+
+    /**
+     * Check whether account locking is enabled for SMS OTP.
+     *
+     * @param context Authentication context.
+     * @return Whether account locking is enabled for SMS OTP.
+     */
+    public static boolean isAccountLockingEnabledForSmsOtp(AuthenticationContext context) {
+
+        return Boolean
+                .parseBoolean(getConfiguration(context, SMSOTPConstants.ENABLE_ACCOUNT_LOCKING_FOR_FAILED_ATTEMPTS));
+    }
+
+    /**
+     * Check whether the given user account is locked.
+     *
+     * @param authenticatedUser Authenticated user.
+     * @return True if user account is locked.
+     * @throws AuthenticationFailedException Exception on authentication failure.
+     */
+    public static boolean isAccountLocked(AuthenticatedUser authenticatedUser) throws AuthenticationFailedException {
+
+        try {
+            return SMSOTPServiceDataHolder.getInstance().getAccountLockService()
+                    .isAccountLocked(authenticatedUser.getUserName(), authenticatedUser.getTenantDomain(),
+                            authenticatedUser.getUserStoreDomain());
+        } catch (AccountLockServiceException e) {
+            String errorMessage = String.format("Error while validating account lock status of user: %s.",
+                    authenticatedUser.getUserName());
+            throw new AuthenticationFailedException(errorMessage, e);
+        }
+    }
+
+    /**
+     * Check whether the user being authenticated via a local authenticator or not.
+     *
+     * @param context Authentication context.
+     * @return Whether the user being authenticated via a local authenticator.
+     */
+    public static boolean isLocalUser(AuthenticationContext context) {
+
+        Map<Integer, StepConfig> stepConfigMap = context.getSequenceConfig().getStepMap();
+        if (stepConfigMap != null) {
+            for (StepConfig stepConfig : stepConfigMap.values()) {
+                if (stepConfig.getAuthenticatedUser() != null && stepConfig.isSubjectAttributeStep() &&
+                        stepConfig.getAuthenticatedIdP().equals(SMSOTPConstants.LOCAL_AUTHENTICATOR)) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }

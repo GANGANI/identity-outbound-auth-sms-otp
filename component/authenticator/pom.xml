@@ -72,6 +72,11 @@
             <artifactId>slf4j-log4j12</artifactId>
             <version>${slf4j.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.wso2.carbon.identity</groupId>
+            <artifactId>org.wso2.carbon.identity.mgt</artifactId>
+            <version>5.2.2</version>
+        </dependency>
     </dependencies>
     <build>
         <pluginManagement>
@@ -119,6 +124,8 @@
                             org.apache.commons.logging.*; version="1.0.4",
                             org.osgi.framework,
                             org.wso2.carbon.identity.application.authentication.framework.*,
+                            org.wso2.carbon.identity.mgt.account.lock;
+                            version="${carbon.identity.package.import.version.range}",
                             javax.servlet,
                             javax.servlet.http,
                             org.wso2.carbon.extension.identity.helper.*;
